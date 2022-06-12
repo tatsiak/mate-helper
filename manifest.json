@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Mate helper",
+  "version": "0.0.1",
+
+  "description": "Browser extension that plays cool sound once task is completed",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "author": "Serhii Tatsiak",
+
+  "incognito": "not_allowed",
+
+  "permissions": ["tabs", "activeTab", "scripting"],
+  "host_permissions": ["https://mate.academy/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://mate.academy/*"],
+      "run_at": "document_idle",
+      "js": ["content.js"]
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["sounds/*", "content.js"],
+      "matches": ["https://mate.academy/*"]
+    }
+  ]
+}
